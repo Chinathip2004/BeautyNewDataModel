@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
+
+namespace Beauty1.Models;
+
+[Table("Picture")]
+public partial class Picture
+{
+    [Key]
+    public int Id { get; set; }
+
+    public int? ImageId { get; set; }
+
+    public string? ImageUrl { get; set; }
+
+    [ForeignKey("Id")]
+    [InverseProperty("Picture")]
+    public virtual ComponentElement IdNavigation { get; set; } = null!;
+}

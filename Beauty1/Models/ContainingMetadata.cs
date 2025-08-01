@@ -1,0 +1,46 @@
+﻿namespace Beauty1.Models
+{
+    public partial class Containing
+    {
+        public Containing Create(CustomContext custom , Component component)
+        {
+            Component component1 = this.Component;
+            component1.Create(custom);
+
+            Containing cc = new Containing();
+            cc.ContainerId = component.Id;
+            cc.ComponentId = component1.Id;
+            custom.Add(cc);
+            custom.SaveChanges();
+            
+            //foreach(CombineElement cb in component1.CombineElements)
+            //{
+            //    cb.ComponentId = component1.Id;
+            //    cb.Create(custom, component1);
+            //}
+
+            if(component1.Name == "Section")
+            {
+                foreach(Containing conning in component1.Containings)
+                {
+                    conning.Create(custom, component1);
+                }
+            }
+
+            //if(component1.Name == "FormTemplate")
+            //{
+                
+
+            //    foreach(var ff in component1.FormTemplate.FormComponentTemplates)
+            //    {
+            //        ff.FormId = component1.Id;
+            //        ff.Create(custom, component1);
+            //    }
+            //}
+            
+            
+            
+            return this;
+        }
+    }
+}
