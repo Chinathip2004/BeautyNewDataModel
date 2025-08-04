@@ -43,7 +43,15 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<EventCategorize> EventCategorizes { get; set; }
 
+    public virtual DbSet<Form> Forms { get; set; }
+
+    public virtual DbSet<FormCombineElement> FormCombineElements { get; set; }
+
+    public virtual DbSet<FormComponent> FormComponents { get; set; }
+
     public virtual DbSet<FormComponentTemplate> FormComponentTemplates { get; set; }
+
+    public virtual DbSet<FormElement> FormElements { get; set; }
 
     public virtual DbSet<FormElementTemplate> FormElementTemplates { get; set; }
 
@@ -173,9 +181,33 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.Category).WithMany(p => p.EventCategorizes).HasConstraintName("FK_EventCategorize_Category");
         });
 
+        modelBuilder.Entity<Form>(entity =>
+        {
+            entity.HasOne(d => d.FormTemplate).WithMany(p => p.Forms).HasConstraintName("FK_Form_FormTemplate");
+        });
+
+        modelBuilder.Entity<FormCombineElement>(entity =>
+        {
+            entity.HasOne(d => d.FormComponent).WithMany(p => p.FormCombineElements).HasConstraintName("FK_FormCombineElement_FormComponent");
+
+            entity.HasOne(d => d.FormElement).WithMany(p => p.FormCombineElements).HasConstraintName("FK_FormCombineElement_FormElement");
+        });
+
+        modelBuilder.Entity<FormComponent>(entity =>
+        {
+            entity.HasOne(d => d.FormComponentTemplate).WithMany(p => p.FormComponents).HasConstraintName("FK_FormComponent_FormComponentTemplate");
+
+            entity.HasOne(d => d.Form).WithMany(p => p.FormComponents).HasConstraintName("FK_FormComponent_Form");
+        });
+
         modelBuilder.Entity<FormComponentTemplate>(entity =>
         {
             entity.HasOne(d => d.Form).WithMany(p => p.FormComponentTemplates).HasConstraintName("FK_FormComponentTemplate_FormTemplate");
+        });
+
+        modelBuilder.Entity<FormElement>(entity =>
+        {
+            entity.HasOne(d => d.FormElementTemplate).WithMany(p => p.FormElements).HasConstraintName("FK_FormElement_FormElementTemplate");
         });
 
         modelBuilder.Entity<FormElementTemplate>(entity =>

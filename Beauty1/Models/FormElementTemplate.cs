@@ -17,6 +17,9 @@ public partial class FormElementTemplate
     [InverseProperty("FormElement")]
     public virtual ICollection<CombineFormElementTemplate> CombineFormElementTemplates { get; set; } = new List<CombineFormElementTemplate>();
 
+    [InverseProperty("FormElementTemplate")]
+    public virtual ICollection<FormElement> FormElements { get; set; } = new List<FormElement>();
+
     [InverseProperty("IdNavigation")]
     public virtual FormInputDateTemplate? FormInputDateTemplate { get; set; }
 

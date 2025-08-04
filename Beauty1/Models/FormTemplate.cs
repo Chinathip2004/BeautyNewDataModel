@@ -15,6 +15,9 @@ public partial class FormTemplate
     [InverseProperty("Form")]
     public virtual ICollection<FormComponentTemplate> FormComponentTemplates { get; set; } = new List<FormComponentTemplate>();
 
+    [InverseProperty("FormTemplate")]
+    public virtual ICollection<Form> Forms { get; set; } = new List<Form>();
+
     [ForeignKey("Id")]
     [InverseProperty("FormTemplate")]
     public virtual Component IdNavigation { get; set; } = null!;

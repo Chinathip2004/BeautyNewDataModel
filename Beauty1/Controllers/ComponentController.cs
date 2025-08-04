@@ -30,9 +30,8 @@ namespace Beauty1.Controllers
         public ActionResult CreateCopy(int? id)
         {
 
-            
-
-
+            Form f = new Form();
+            f.Create(_context, id);
             return Ok();
         }
     }

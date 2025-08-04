@@ -22,4 +22,7 @@ public partial class FormComponentTemplate
     [ForeignKey("FormId")]
     [InverseProperty("FormComponentTemplates")]
     public virtual FormTemplate? Form { get; set; }
+
+    [InverseProperty("FormComponentTemplate")]
+    public virtual ICollection<FormComponent> FormComponents { get; set; } = new List<FormComponent>();
 }

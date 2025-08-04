@@ -2,7 +2,7 @@
 {
     public partial class ComponentElement
     {
-        public ComponentElement     Create(CustomContext custom)
+        public ComponentElement Create(CustomContext custom)
         {
             //ComponentElement ce = (ComponentElement)this;
             //custom.Add(ce);
