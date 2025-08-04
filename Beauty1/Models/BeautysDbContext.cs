@@ -19,9 +19,13 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<Banner> Banners { get; set; }
 
+    public virtual DbSet<BirthDate> BirthDates { get; set; }
+
     public virtual DbSet<Button> Buttons { get; set; }
 
     public virtual DbSet<ButtonComponent> ButtonComponents { get; set; }
+
+    public virtual DbSet<ButtonForm> ButtonForms { get; set; }
 
     public virtual DbSet<Category> Categories { get; set; }
 
@@ -36,6 +40,8 @@ public partial class BeautysDbContext : DbContext
     public virtual DbSet<Container> Containers { get; set; }
 
     public virtual DbSet<Containing> Containings { get; set; }
+
+    public virtual DbSet<Date> Dates { get; set; }
 
     public virtual DbSet<DateTimeTable> DateTimeTables { get; set; }
 
@@ -73,6 +79,10 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<ImageDesc> ImageDescs { get; set; }
 
+    public virtual DbSet<ImageUpload> ImageUploads { get; set; }
+
+    public virtual DbSet<ImageUploadWithImageContent> ImageUploadWithImageContents { get; set; }
+
     public virtual DbSet<ImageWithCaption> ImageWithCaptions { get; set; }
 
     public virtual DbSet<NumberTable> NumberTables { get; set; }
@@ -87,11 +97,15 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<Section> Sections { get; set; }
 
+    public virtual DbSet<SingleSelection> SingleSelections { get; set; }
+
     public virtual DbSet<TableWithTopicAndDesc> TableWithTopicAndDescs { get; set; }
 
     public virtual DbSet<Text> Texts { get; set; }
 
     public virtual DbSet<TextBox> TextBoxes { get; set; }
+
+    public virtual DbSet<TextField> TextFields { get; set; }
 
     public virtual DbSet<TwoTopicImageCaptionButton> TwoTopicImageCaptionButtons { get; set; }
 
@@ -119,6 +133,15 @@ public partial class BeautysDbContext : DbContext
                 .HasConstraintName("FK_Banner_Component");
         });
 
+        modelBuilder.Entity<BirthDate>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.BirthDate)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_BirthDate_FormComponentTemplate");
+        });
+
         modelBuilder.Entity<Button>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();
@@ -135,6 +158,15 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.ButtonComponent)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ButtonComponent_Component");
+        });
+
+        modelBuilder.Entity<ButtonForm>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.ButtonForm)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ButtonForm_FormComponentTemplate");
         });
 
         modelBuilder.Entity<CombineElement>(entity =>
@@ -165,6 +197,15 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.Component).WithMany(p => p.Containings).HasConstraintName("FK_Containing_Component");
 
             entity.HasOne(d => d.Container).WithMany(p => p.Containings).HasConstraintName("FK_Containing_Container");
+        });
+
+        modelBuilder.Entity<Date>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.Date)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_Date_FormComponentTemplate");
         });
 
         modelBuilder.Entity<DateTimeTable>(entity =>
@@ -300,6 +341,24 @@ public partial class BeautysDbContext : DbContext
                 .HasConstraintName("FK_ImageDesc_Component");
         });
 
+        modelBuilder.Entity<ImageUpload>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.ImageUpload)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ImageUpload_FormComponentTemplate");
+        });
+
+        modelBuilder.Entity<ImageUploadWithImageContent>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.ImageUploadWithImageContent)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ImageUploadWithImageContent_FormComponentTemplate");
+        });
+
         modelBuilder.Entity<ImageWithCaption>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();
@@ -365,6 +424,15 @@ public partial class BeautysDbContext : DbContext
                 .HasConstraintName("FK_Section_Container");
         });
 
+        modelBuilder.Entity<SingleSelection>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.SingleSelection)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_SingleSelection_FormComponentTemplate");
+        });
+
         modelBuilder.Entity<TableWithTopicAndDesc>(entity =>
         {
             entity.Property(e => e.Id).ValueGeneratedNever();
@@ -390,6 +458,15 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.TextBox)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_TextBox_Component");
+        });
+
+        modelBuilder.Entity<TextField>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.TextField)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_TextField_FormComponentTemplate");
         });
 
         modelBuilder.Entity<TwoTopicImageCaptionButton>(entity =>

@@ -33,6 +33,15 @@ namespace Beauty1.Models
             modelBuilder.Entity<NumberTable>().ToTable("NumberTable");
             modelBuilder.Entity<DateTimeTable>().ToTable("DateTimeTable");
             modelBuilder.Entity<FormElementTemplate>().ToTable("FormElementTemplate");
+
+            modelBuilder.Entity<FormComponentTemplate>().UseTptMappingStrategy().ToTable("FormComponentTemplate");
+            modelBuilder.Entity<SingleSelection>().ToTable("SingleSelection");
+            modelBuilder.Entity<TextField>().ToTable("TextField");
+            modelBuilder.Entity<Date>().ToTable("Date");
+            modelBuilder.Entity<BirthDate>().ToTable("BirthDate");
+            modelBuilder.Entity<ImageUpload>().ToTable("ImageUpload");
+            modelBuilder.Entity<ImageUploadWithImageContent>().ToTable("ImageUploadWithImageContent");
+            modelBuilder.Entity<ButtonForm>().ToTable("ButtonForm");
     
             modelBuilder.Entity<FormElementTemplate>().UseTptMappingStrategy().ToTable("FormElementTemplate");
             modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.FormInputDateTemplate);

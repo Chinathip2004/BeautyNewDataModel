@@ -16,8 +16,17 @@ public partial class FormComponentTemplate
 
     public string? TypeName { get; set; }
 
+    [InverseProperty("IdNavigation")]
+    public virtual BirthDate? BirthDate { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual ButtonForm? ButtonForm { get; set; }
+
     [InverseProperty("FormComponent")]
     public virtual ICollection<CombineFormElementTemplate> CombineFormElementTemplates { get; set; } = new List<CombineFormElementTemplate>();
+
+    [InverseProperty("IdNavigation")]
+    public virtual Date? Date { get; set; }
 
     [ForeignKey("FormId")]
     [InverseProperty("FormComponentTemplates")]
@@ -25,4 +34,16 @@ public partial class FormComponentTemplate
 
     [InverseProperty("FormComponentTemplate")]
     public virtual ICollection<FormComponent> FormComponents { get; set; } = new List<FormComponent>();
+
+    [InverseProperty("IdNavigation")]
+    public virtual ImageUpload? ImageUpload { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual ImageUploadWithImageContent? ImageUploadWithImageContent { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual SingleSelection? SingleSelection { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual TextField? TextField { get; set; }
 }
