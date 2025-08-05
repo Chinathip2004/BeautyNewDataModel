@@ -109,6 +109,9 @@ namespace Beauty1.Models
                 case "FormTemplate":
                     FormTemplate ft = new FormTemplate();
                     ft.Name = this.Name;
+                    ft.Topic = this.FormTemplate.Topic;
+                    ft.Url = this.FormTemplate.Url;
+                    ft.ButtonName = this.FormTemplate.ButtonName;
                     Component ftc = (Component)ft;
                     custom.Add(ftc);
                     custom.SaveChanges();

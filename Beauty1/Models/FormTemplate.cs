@@ -12,6 +12,12 @@ public partial class FormTemplate
     [Key]
     public int Id { get; set; }
 
+    public string? Topic { get; set; }
+
+    public string? ButtonName { get; set; }
+
+    public string? Url { get; set; }
+
     [InverseProperty("Form")]
     public virtual ICollection<FormComponentTemplate> FormComponentTemplates { get; set; } = new List<FormComponentTemplate>();
 

@@ -4,23 +4,24 @@
     {
         public FormComponent Create(CustomContext custom, Form form)
         {
-            this.FormId = form.Id;
+            
 
             List<FormComponentTemplate> ff = custom.FormComponentTemplates.Where(f => f.FormId == form.FormTemplateId).ToList();
 
 
             foreach(var d in ff)
             {
-                this.FormComponentTemplateId = d.Id;
-                this.FormId = form.Id;
-                custom.Add(this);
+                FormComponent ddd = new FormComponent();
+                ddd.FormComponentTemplateId = d.Id;
+                ddd.FormId = form.Id;
+                custom.Add(ddd);
                 custom.SaveChanges();
 
                 List<CombineFormElementTemplate> cc = custom.CombineFormElementTemplates.Where(fff => fff.FormComponentId == d.Id).ToList();
                 foreach(var c in cc)
                 {
                     FormCombineElement f1 = new FormCombineElement();
-                    f1.FormComponentId = this.Id;
+                    f1.FormComponentId = ddd.Id;
                     f1.Create(custom, c.FormElementId);
                 }
             }

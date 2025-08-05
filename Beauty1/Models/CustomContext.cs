@@ -42,6 +42,7 @@ namespace Beauty1.Models
             modelBuilder.Entity<ImageUpload>().ToTable("ImageUpload");
             modelBuilder.Entity<ImageUploadWithImageContent>().ToTable("ImageUploadWithImageContent");
             modelBuilder.Entity<ButtonForm>().ToTable("ButtonForm");
+            modelBuilder.Entity<PopUpForm>().ToTable("PopUpForm");
     
             modelBuilder.Entity<FormElementTemplate>().UseTptMappingStrategy().ToTable("FormElementTemplate");
             modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.FormInputDateTemplate);
@@ -49,11 +50,18 @@ namespace Beauty1.Models
             modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.FormInputTextTemplate);
             modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.FormLabelTemplate);
             modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.FormOptionTemplate);
+            modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.PopUpTemplate);
+            modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.PictureTemplate);
+            modelBuilder.Entity<FormElementTemplate>().Ignore(f => f.ButtonTemplate);
             modelBuilder.Entity<FormInputDateTemplate>().ToTable("FormInputDateTemplate");
             modelBuilder.Entity<FormLabelTemplate>().ToTable("FormLabelTemplate");
             modelBuilder.Entity<FormInputTextTemplate>().ToTable("FormInputTextTemplate");
             modelBuilder.Entity<FormOptionTemplate>().ToTable("FormOptionTemplate");
             modelBuilder.Entity<FormInputFileTemplate>().ToTable("FormInputFileTemplate");
+            modelBuilder.Entity<PopUpTemplate>().ToTable("PopUpTemplate");
+            modelBuilder.Entity<PictureTemplate>().ToTable("PictureTemplate");
+            modelBuilder.Entity<ButtonTemplate>().ToTable("ButtonTemplate");
+
 
             modelBuilder.Entity<Containing>(con =>
             {

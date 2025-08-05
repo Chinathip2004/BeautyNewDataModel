@@ -27,6 +27,8 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<ButtonForm> ButtonForms { get; set; }
 
+    public virtual DbSet<ButtonTemplate> ButtonTemplates { get; set; }
+
     public virtual DbSet<Category> Categories { get; set; }
 
     public virtual DbSet<CombineElement> CombineElements { get; set; }
@@ -94,6 +96,12 @@ public partial class BeautysDbContext : DbContext
     public virtual DbSet<Page> Pages { get; set; }
 
     public virtual DbSet<Picture> Pictures { get; set; }
+
+    public virtual DbSet<PictureTemplate> PictureTemplates { get; set; }
+
+    public virtual DbSet<PopUpForm> PopUpForms { get; set; }
+
+    public virtual DbSet<PopUpTemplate> PopUpTemplates { get; set; }
 
     public virtual DbSet<Sale> Sales { get; set; }
 
@@ -169,6 +177,15 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.ButtonForm)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_ButtonForm_FormComponentTemplate");
+        });
+
+        modelBuilder.Entity<ButtonTemplate>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.ButtonTemplate)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_ButtonTemplate_FormElementTemplate");
         });
 
         modelBuilder.Entity<CombineElement>(entity =>
@@ -406,6 +423,37 @@ public partial class BeautysDbContext : DbContext
                 .HasConstraintName("FK_Picture_ComponentElement");
 
             entity.HasOne(d => d.Image).WithMany(p => p.Pictures).HasConstraintName("FK_Picture_FileImg");
+        });
+
+        modelBuilder.Entity<PictureTemplate>(entity =>
+        {
+            entity.HasKey(e => e.Id).HasName("PK_PictureFormElement");
+
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.File).WithMany(p => p.PictureTemplates).HasConstraintName("FK_PictureFormElement_FileImg");
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.PictureTemplate)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PictureTemplate_FormElementTemplate");
+        });
+
+        modelBuilder.Entity<PopUpForm>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.PopUpForm)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PopUpForm_FormComponentTemplate");
+        });
+
+        modelBuilder.Entity<PopUpTemplate>(entity =>
+        {
+            entity.Property(e => e.Id).ValueGeneratedNever();
+
+            entity.HasOne(d => d.IdNavigation).WithOne(p => p.PopUpTemplate)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_PopUpTemplate_FormElementTemplate");
         });
 
         modelBuilder.Entity<Sale>(entity =>

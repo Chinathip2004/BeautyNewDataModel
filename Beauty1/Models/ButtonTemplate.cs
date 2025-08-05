@@ -6,19 +6,20 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Beauty1.Models;
 
-[Table("Button")]
-public partial class Button
+[Table("ButtonTemplate")]
+public partial class ButtonTemplate
 {
     [Key]
     public int Id { get; set; }
 
-    public string? ButtonText { get; set; }
+    public string? ButtonName { get; set; }
 
     public string? ButtonUrl { get; set; }
 
+    [Column("isActive")]
     public bool IsActive { get; set; }
 
     [ForeignKey("Id")]
-    [InverseProperty("Button")]
-    public virtual ComponentElement IdNavigation { get; set; } = null!;
+    [InverseProperty("ButtonTemplate")]
+    public virtual FormElementTemplate IdNavigation { get; set; } = null!;
 }

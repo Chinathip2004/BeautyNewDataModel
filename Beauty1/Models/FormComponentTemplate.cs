@@ -42,6 +42,9 @@ public partial class FormComponentTemplate
     public virtual ImageUploadWithImageContent? ImageUploadWithImageContent { get; set; }
 
     [InverseProperty("IdNavigation")]
+    public virtual PopUpForm? PopUpForm { get; set; }
+
+    [InverseProperty("IdNavigation")]
     public virtual SingleSelection? SingleSelection { get; set; }
 
     [InverseProperty("IdNavigation")]

@@ -19,6 +19,9 @@ public partial class FileImg
     [InverseProperty("File")]
     public virtual ICollection<Event> Events { get; set; } = new List<Event>();
 
+    [InverseProperty("File")]
+    public virtual ICollection<PictureTemplate> PictureTemplates { get; set; } = new List<PictureTemplate>();
+
     [InverseProperty("Image")]
     public virtual ICollection<Picture> Pictures { get; set; } = new List<Picture>();
 }

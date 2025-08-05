@@ -4,9 +4,7 @@
     {
         public ComponentElement Create(CustomContext custom)
         {
-            //ComponentElement ce = (ComponentElement)this;
-            //custom.Add(ce);
-            //custom.SaveChanges();
+            
 
             if(this.Name == "Button")
             {
@@ -62,13 +60,7 @@
             }
 
 
-            //if(this.Name == "FormElementTemplate")
-            //{
-            //    FormElementTemplate f = FormElementTemplate.Create(custom);
-            //    f.Name = this.Name;
-            //    this.Id = (f as ComponentElement).Id;
-                
-            //}
+            
 
             return this;
         }

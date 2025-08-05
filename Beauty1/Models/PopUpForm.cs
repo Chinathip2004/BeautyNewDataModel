@@ -6,19 +6,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Beauty1.Models;
 
-[Table("Button")]
-public partial class Button
+[Table("PopUpForm")]
+public partial class PopUpForm
 {
     [Key]
     public int Id { get; set; }
 
-    public string? ButtonText { get; set; }
-
-    public string? ButtonUrl { get; set; }
-
-    public bool IsActive { get; set; }
-
     [ForeignKey("Id")]
-    [InverseProperty("Button")]
-    public virtual ComponentElement IdNavigation { get; set; } = null!;
+    [InverseProperty("PopUpForm")]
+    public virtual FormComponentTemplate IdNavigation { get; set; } = null!;
 }

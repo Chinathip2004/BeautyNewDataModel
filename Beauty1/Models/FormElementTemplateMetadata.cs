@@ -30,6 +30,7 @@
                 //ff = off;
                 custom.Add(off);
                 custom.SaveChanges();
+                this.Id = off.Id;
             }
 
             if(this.Type == "FormInputTextTemplate")
@@ -41,6 +42,7 @@
                 //ff = tf;
                 custom.Add(tf);
                 custom.SaveChanges();
+                this.Id = tf.Id;
             }
 
             if(this.Type == "FormInputDateTemplate")
@@ -52,6 +54,7 @@
                 //ff = df;
                 custom.Add(df);
                 custom.SaveChanges();
+                this.Id = df.Id;
             }
 
             if(this.Type == "FormInputFileTemplate")
@@ -63,7 +66,43 @@
                 //ff = ff1;
                 custom.Add(ff1);
                 custom.SaveChanges();
-                
+                this.Id = ff1.Id;
+
+            }
+
+            if(this.Type == "PopUpTemplate")
+            {
+                PopUpTemplate pu = new PopUpTemplate();
+                pu.Type = this.Type;
+                pu.Url = this.PopUpTemplate.Url;
+                pu.TextValue = this.PopUpTemplate.TextValue;
+                FormElementTemplate puf = (FormElementTemplate)pu;
+                custom.Add(puf);
+                custom.SaveChanges();
+                this.Id = puf.Id;
+            }
+
+            if(this.Type == "PictureTemplate")
+            {
+                PictureTemplate piggy = new PictureTemplate();
+                piggy.Type = this.Type;
+                //piggy.FileId = this.PictureTemplate.FileId;
+                FormElementTemplate panama888 = (FormElementTemplate)piggy;
+                custom.Add(panama888);
+                custom.SaveChanges();
+                this.Id = panama888.Id;
+            }
+            if(this.Type == "ButtonTemplate")
+            {
+                ButtonTemplate bot = new ButtonTemplate();
+                bot.Type = this.Type;
+                bot.ButtonUrl = this.ButtonTemplate.ButtonUrl;
+                bot.ButtonName = this.ButtonTemplate.ButtonName;
+                bot.IsActive = this.ButtonTemplate.IsActive;
+                FormElementTemplate bg = (FormElementTemplate)bot;
+                custom.Add(bg);
+                custom.SaveChanges();
+                this.Id = bg.Id;
             }
 
             return this;

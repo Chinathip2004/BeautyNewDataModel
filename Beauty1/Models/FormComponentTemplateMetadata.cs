@@ -32,7 +32,7 @@
                     break;
 
                 case "Date":
-                    this.FormId = component.Id;
+                    //this.FormId = component.Id;
                     Date d = new Date();
                     d.TypeName = this.TypeName;
                     FormComponentTemplate dt = (FormComponentTemplate)d;
@@ -43,7 +43,7 @@
                     break;
 
                 case "BirthDate":
-                    this.FormId = component.Id;
+                    //this.FormId = component.Id;
                     BirthDate bd = new BirthDate();
                     bd.TypeName = this.TypeName;
                     FormComponentTemplate hbd = (FormComponentTemplate)bd;
@@ -54,7 +54,7 @@
                     break;
 
                 case "ImageUpload":
-                    this.FormId = component.Id;
+                    //this.FormId = component.Id;
                     ImageUpload iu = new ImageUpload();
                     iu.TypeName = this.TypeName;
                     FormComponentTemplate it = (FormComponentTemplate)iu;
@@ -65,7 +65,7 @@
                     break;
 
                 case "ImageUploadWithImageContent":
-                    this.FormId = component.Id;
+                    //this.FormId = component.Id;
                     ImageUploadWithImageContent ic = new ImageUploadWithImageContent();
                     ic.TypeName = this.TypeName;
                     FormComponentTemplate ifc = (FormComponentTemplate)ic;
@@ -76,7 +76,7 @@
                     break;
 
                 case "ButtonForm":
-                    this.FormId = component.Id;
+                    //this.FormId = component.Id;
                     ButtonForm bf = new ButtonForm();
                     bf.TypeName = this.TypeName;
                     FormComponentTemplate bt = (FormComponentTemplate)bf;
@@ -84,6 +84,17 @@
                     custom.Add(bt);
                     custom.SaveChanges();
                     this.Id = bt.Id;
+                    break;
+
+                case "PopUpForm":
+                    
+                    PopUpForm pf = new PopUpForm();
+                    pf.TypeName = this.TypeName;
+                    FormComponentTemplate pt = (FormComponentTemplate)pf;
+                    pt.FormId = component.Id;
+                    custom.Add(pt);
+                    custom.SaveChanges();
+                    this.Id = pt.Id;
                     break;
                     
             }

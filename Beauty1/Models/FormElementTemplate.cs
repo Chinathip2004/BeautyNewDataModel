@@ -14,6 +14,9 @@ public partial class FormElementTemplate
 
     public string? Type { get; set; }
 
+    [InverseProperty("IdNavigation")]
+    public virtual ButtonTemplate? ButtonTemplate { get; set; }
+
     [InverseProperty("FormElement")]
     public virtual ICollection<CombineFormElementTemplate> CombineFormElementTemplates { get; set; } = new List<CombineFormElementTemplate>();
 
@@ -34,4 +37,10 @@ public partial class FormElementTemplate
 
     [InverseProperty("IdNavigation")]
     public virtual FormOptionTemplate? FormOptionTemplate { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual PictureTemplate? PictureTemplate { get; set; }
+
+    [InverseProperty("IdNavigation")]
+    public virtual PopUpTemplate? PopUpTemplate { get; set; }
 }
