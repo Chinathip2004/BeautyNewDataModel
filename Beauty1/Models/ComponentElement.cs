@@ -24,9 +24,6 @@ public partial class ComponentElement
     public virtual DateTimeTable? DateTimeTable { get; set; }
 
     [InverseProperty("IdNavigation")]
-    public virtual FormElementTemplate? FormElementTemplate { get; set; }
-
-    [InverseProperty("IdNavigation")]
     public virtual NumberTable? NumberTable { get; set; }
 
     [InverseProperty("IdNavigation")]

@@ -15,4 +15,10 @@ public partial class FileImg
     public string? FilePath { get; set; }
 
     public string? FileName { get; set; }
+
+    [InverseProperty("File")]
+    public virtual ICollection<Event> Events { get; set; } = new List<Event>();
+
+    [InverseProperty("Image")]
+    public virtual ICollection<Picture> Pictures { get; set; } = new List<Picture>();
 }

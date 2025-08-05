@@ -21,6 +21,10 @@ public partial class Event
     [InverseProperty("Event")]
     public virtual ICollection<EventCategorize> EventCategorizes { get; set; } = new List<EventCategorize>();
 
+    [ForeignKey("FileId")]
+    [InverseProperty("Events")]
+    public virtual FileImg? File { get; set; }
+
     [InverseProperty("Event")]
     public virtual ICollection<Page> Pages { get; set; } = new List<Page>();
 }

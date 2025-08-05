@@ -219,6 +219,11 @@ public partial class BeautysDbContext : DbContext
                 .HasConstraintName("FK_DateTimeTable_ComponentElement");
         });
 
+        modelBuilder.Entity<Event>(entity =>
+        {
+            entity.HasOne(d => d.File).WithMany(p => p.Events).HasConstraintName("FK_Event_FileImg");
+        });
+
         modelBuilder.Entity<EventCategorize>(entity =>
         {
             entity.HasOne(d => d.Category).WithMany(p => p.EventCategorizes).HasConstraintName("FK_EventCategorize_Category");
@@ -253,15 +258,6 @@ public partial class BeautysDbContext : DbContext
         modelBuilder.Entity<FormElement>(entity =>
         {
             entity.HasOne(d => d.FormElementTemplate).WithMany(p => p.FormElements).HasConstraintName("FK_FormElement_FormElementTemplate");
-        });
-
-        modelBuilder.Entity<FormElementTemplate>(entity =>
-        {
-            entity.Property(e => e.Id).ValueGeneratedNever();
-
-            entity.HasOne(d => d.IdNavigation).WithOne(p => p.FormElementTemplate)
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK_FormElement_ComponentElement");
         });
 
         modelBuilder.Entity<FormInputDateTemplate>(entity =>
@@ -408,6 +404,8 @@ public partial class BeautysDbContext : DbContext
             entity.HasOne(d => d.IdNavigation).WithOne(p => p.Picture)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Picture_ComponentElement");
+
+            entity.HasOne(d => d.Image).WithMany(p => p.Pictures).HasConstraintName("FK_Picture_FileImg");
         });
 
         modelBuilder.Entity<Sale>(entity =>

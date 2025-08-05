@@ -19,4 +19,8 @@ public partial class Picture
     [ForeignKey("Id")]
     [InverseProperty("Picture")]
     public virtual ComponentElement IdNavigation { get; set; } = null!;
+
+    [ForeignKey("ImageId")]
+    [InverseProperty("Pictures")]
+    public virtual FileImg? Image { get; set; }
 }

@@ -34,8 +34,4 @@ public partial class FormElementTemplate
 
     [InverseProperty("IdNavigation")]
     public virtual FormOptionTemplate? FormOptionTemplate { get; set; }
-
-    [ForeignKey("Id")]
-    [InverseProperty("FormElementTemplate")]
-    public virtual ComponentElement IdNavigation { get; set; } = null!;
 }

@@ -32,7 +32,7 @@ namespace Beauty1.Models
             modelBuilder.Entity<Picture>().ToTable("Picture");
             modelBuilder.Entity<NumberTable>().ToTable("NumberTable");
             modelBuilder.Entity<DateTimeTable>().ToTable("DateTimeTable");
-            modelBuilder.Entity<FormElementTemplate>().ToTable("FormElementTemplate");
+            
 
             modelBuilder.Entity<FormComponentTemplate>().UseTptMappingStrategy().ToTable("FormComponentTemplate");
             modelBuilder.Entity<SingleSelection>().ToTable("SingleSelection");

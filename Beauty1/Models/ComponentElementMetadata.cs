@@ -30,13 +30,45 @@
                 custom.SaveChanges();
                 this.Id = te.Id;
             }
-            if(this.Name == "FormElementTemplate")
+            if(this.Name == "Picture")
             {
-                FormElementTemplate f = FormElementTemplate.Create(custom);
-                f.Name = this.Name;
-                this.Id = (f as ComponentElement).Id;
-                
+                Picture pig = new Picture();
+                pig.ImageId = this.Picture.ImageId;
+                pig.ImageUrl = this.Picture.ImageUrl;
+                ComponentElement p = (ComponentElement)pig;
+                custom.Add(p);
+                custom.SaveChanges();
+                this.Id = p.Id;
             }
+
+            if(this.Name == "NumberTable")
+            {
+                NumberTable nb = new NumberTable();
+                nb.NumberValue = this.NumberTable.NumberValue;
+                ComponentElement d = (ComponentElement)nb;
+                custom.Add(d);
+                custom.SaveChanges();
+                this.Id = d.Id;
+            }
+
+            if(this.Name == "DateTimeTable")
+            {
+                DateTimeTable dt = new DateTimeTable();
+                dt.DateTimeValue = this.DateTimeTable.DateTimeValue;
+                ComponentElement dc = (ComponentElement)dt;
+                custom.Add(dc);
+                custom.SaveChanges();
+                this.Id = dc.Id;
+            }
+
+
+            //if(this.Name == "FormElementTemplate")
+            //{
+            //    FormElementTemplate f = FormElementTemplate.Create(custom);
+            //    f.Name = this.Name;
+            //    this.Id = (f as ComponentElement).Id;
+                
+            //}
 
             return this;
         }

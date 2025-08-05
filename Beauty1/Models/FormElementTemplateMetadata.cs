@@ -1,10 +1,10 @@
 ﻿namespace Beauty1.Models
 {
-    public partial class FormElementTemplate : ComponentElement
+    public partial class FormElementTemplate
     {
         public FormElementTemplate Create(CustomContext custom)
         {
-            FormElementTemplate ff = null;
+            //FormElementTemplate ff = null;
 
             if (this.Type == "FormLabelTemplate")
             {
@@ -13,9 +13,10 @@
                 la.Type = this.Type;
                 FormElementTemplate lf = (FormElementTemplate)la;
                 
-                ff = lf;
+                
                 custom.Add(lf);
                 custom.SaveChanges();
+                this.Id = lf.Id;
                 
             }
 
@@ -26,7 +27,7 @@
                 op.Type = this.Type;
                 FormElementTemplate off = (FormElementTemplate)op;
 
-                ff = off;
+                //ff = off;
                 custom.Add(off);
                 custom.SaveChanges();
             }
@@ -37,7 +38,7 @@
                 it.Type = this.Type;
                 FormElementTemplate tf = (FormElementTemplate)it;
 
-                ff = tf;
+                //ff = tf;
                 custom.Add(tf);
                 custom.SaveChanges();
             }
@@ -48,7 +49,7 @@
                 dt.Type = this.Type;
                 FormElementTemplate df = (FormElementTemplate)dt;
 
-                ff = df;
+                //ff = df;
                 custom.Add(df);
                 custom.SaveChanges();
             }
@@ -59,13 +60,13 @@
                 ft.Type = this.Type;
                 FormElementTemplate ff1 = (FormElementTemplate)ft;
 
-                ff = ff1;
+                //ff = ff1;
                 custom.Add(ff1);
                 custom.SaveChanges();
                 
             }
 
-            return ff ?? this;
+            return this;
         }
     }
 }
