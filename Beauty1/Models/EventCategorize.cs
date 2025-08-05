@@ -19,4 +19,8 @@ public partial class EventCategorize
     [ForeignKey("CategoryId")]
     [InverseProperty("EventCategorizes")]
     public virtual Category? Category { get; set; }
+
+    [ForeignKey("EventId")]
+    [InverseProperty("EventCategorizes")]
+    public virtual Event? Event { get; set; }
 }

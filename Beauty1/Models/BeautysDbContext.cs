@@ -49,6 +49,8 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<EventCategorize> EventCategorizes { get; set; }
 
+    public virtual DbSet<FileImg> FileImgs { get; set; }
+
     public virtual DbSet<Form> Forms { get; set; }
 
     public virtual DbSet<FormCombineElement> FormCombineElements { get; set; }
@@ -220,6 +222,8 @@ public partial class BeautysDbContext : DbContext
         modelBuilder.Entity<EventCategorize>(entity =>
         {
             entity.HasOne(d => d.Category).WithMany(p => p.EventCategorizes).HasConstraintName("FK_EventCategorize_Category");
+
+            entity.HasOne(d => d.Event).WithMany(p => p.EventCategorizes).HasConstraintName("FK_EventCategorize_Event");
         });
 
         modelBuilder.Entity<Form>(entity =>

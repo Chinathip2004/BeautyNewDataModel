@@ -5,29 +5,37 @@ namespace Beauty1.Models
     public partial class Event
     {
         [NotMapped]
-        public Component com { get; set; }
+        public List<Component> com { get; set; }
         public Event Create(CustomContext custom)
         {
-            custom.Events.Add(this);
+            Event ee = new Event();
+            ee.Name = this.Name;
+            ee.IsFavorite = this.IsFavorite;
+            //ee.FileId = this.FileId;
+            custom.Add(ee);
             custom.SaveChanges();
 
-
-            if (com != null)
+            foreach (var cat in this.EventCategorizes)
             {
-                Page page = new Page
-                {
-                    Name = com.Name,
-                    Containings = com.Containings,
-                    EventId = this.Id
-
-                };
-                page.Create(custom, this);
+                cat.EventId = ee.Id;
+                cat.Create(custom);
 
             }
 
+            if (com != null)
+            {
+                foreach (Component compo in com)
+                {
+                    Page page = new Page
+                    {
+                        Name = compo.Name,
+                        Containings = compo.Containings,
+                        EventId = ee.Id
 
-
-
+                    };
+                    page.Create(custom, ee);
+                }
+            }
             return this;
         }
     }
