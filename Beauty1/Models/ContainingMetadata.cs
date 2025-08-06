@@ -10,6 +10,8 @@
             Containing cc = new Containing();
             cc.ContainerId = component.Id;
             cc.ComponentId = component1.Id;
+            cc.Order = this.Order;
+            cc.IsShow = this.IsShow;
             custom.Add(cc);
             custom.SaveChanges();
             

@@ -92,6 +92,7 @@
                 custom.SaveChanges();
                 this.Id = panama888.Id;
             }
+
             if(this.Type == "ButtonTemplate")
             {
                 ButtonTemplate bot = new ButtonTemplate();
