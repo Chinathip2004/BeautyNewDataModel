@@ -39,7 +39,7 @@ namespace Beauty1.Controllers
         [HttpGet("GetAll")]
         public ActionResult  GetAll()
         {
-            var e = _context.Events.Where(f => f.IsFavorite == false).ToList();
+            var e = _context.Events.Where(f => f.IsDelete == false).ToList();
 
             return Ok(e);
         }
@@ -54,7 +54,6 @@ namespace Beauty1.Controllers
             }
             _context.SaveChanges();
             return Ok(e);
-
         }
 
         [HttpGet("GetById")]
@@ -68,6 +67,15 @@ namespace Beauty1.Controllers
             };
             var json = JsonConvert.SerializeObject(ev, setting);
             return Ok(json);
+        }
+
+        [HttpPut]
+        public ActionResult Update()
+        {
+            
+
+
+            return Ok();
         }
     }
 }

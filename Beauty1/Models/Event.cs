@@ -18,6 +18,8 @@ public partial class Event
 
     public int? FileId { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("Event")]
     public virtual ICollection<EventCategorize> EventCategorizes { get; set; } = new List<EventCategorize>();
 

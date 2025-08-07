@@ -25,6 +25,7 @@ namespace Beauty1.Controllers
                 var Cat = new Category
                 {
                     Name = d.Name
+                    
                 };
                 
                 Cat.Create(_context);

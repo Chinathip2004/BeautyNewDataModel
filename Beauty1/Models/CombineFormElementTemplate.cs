@@ -16,6 +16,8 @@ public partial class CombineFormElementTemplate
 
     public int? FormElementId { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [ForeignKey("FormComponentId")]
     [InverseProperty("CombineFormElementTemplates")]
     public virtual FormComponentTemplate? FormComponent { get; set; }

@@ -4,13 +4,14 @@
     {
         public FormElementTemplate Create(CustomContext custom)
         {
-            //FormElementTemplate ff = null;
+            //PictureTemplate ยังไม่ได้เปิดให้ใส่ไอดีของรูปภาพ
 
             if (this.Type == "FormLabelTemplate")
             {
                 FormLabelTemplate la = new FormLabelTemplate();
                 la.LabelText = this.FormLabelTemplate.LabelText;
                 la.Type = this.Type;
+                la.IsDelete = false;
                 FormElementTemplate lf = (FormElementTemplate)la;
                 
                 
@@ -25,6 +26,7 @@
                 FormOptionTemplate op = new FormOptionTemplate();
                 op.OptionValue = this.FormOptionTemplate.OptionValue;
                 op.Type = this.Type;
+                op.IsDelete = false;
                 FormElementTemplate off = (FormElementTemplate)op;
 
                 //ff = off;
@@ -37,6 +39,7 @@
             {
                 FormInputTextTemplate it = new FormInputTextTemplate();
                 it.Type = this.Type;
+                it.IsDelete = false;
                 FormElementTemplate tf = (FormElementTemplate)it;
 
                 //ff = tf;
@@ -49,6 +52,7 @@
             {
                 FormInputDateTemplate dt = new FormInputDateTemplate();
                 dt.Type = this.Type;
+                dt.IsDelete = false;
                 FormElementTemplate df = (FormElementTemplate)dt;
 
                 //ff = df;
@@ -61,6 +65,7 @@
             {
                 FormInputFileTemplate ft = new FormInputFileTemplate();
                 ft.Type = this.Type;
+                ft.IsDelete = false;
                 FormElementTemplate ff1 = (FormElementTemplate)ft;
 
                 //ff = ff1;
@@ -74,6 +79,7 @@
             {
                 PopUpTemplate pu = new PopUpTemplate();
                 pu.Type = this.Type;
+                pu.IsDelete = false;
                 pu.Url = this.PopUpTemplate.Url;
                 pu.TextValue = this.PopUpTemplate.TextValue;
                 FormElementTemplate puf = (FormElementTemplate)pu;
@@ -82,10 +88,11 @@
                 this.Id = puf.Id;
             }
 
-            if(this.Type == "PictureTemplate")
+            if(this.Type == "PictureTemplate")//อันนี้ยังไม่ได้เปิดให้ใส่ไอดีรูป
             {
                 PictureTemplate piggy = new PictureTemplate();
                 piggy.Type = this.Type;
+                piggy.IsDelete = false;
                 //piggy.FileId = this.PictureTemplate.FileId;
                 FormElementTemplate panama888 = (FormElementTemplate)piggy;
                 custom.Add(panama888);
@@ -97,6 +104,7 @@
             {
                 ButtonTemplate bot = new ButtonTemplate();
                 bot.Type = this.Type;
+                bot.IsDelete = false;
                 bot.ButtonUrl = this.ButtonTemplate.ButtonUrl;
                 bot.ButtonName = this.ButtonTemplate.ButtonName;
                 bot.IsActive = this.ButtonTemplate.IsActive;
@@ -106,6 +114,13 @@
                 this.Id = bg.Id;
             }
 
+            return this;
+        }
+
+        public FormElementTemplate Delete(CustomContext custom)
+        {
+            IsDelete = true;
+            custom.FormElementTemplates.Update(this);
             return this;
         }
     }

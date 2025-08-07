@@ -7,17 +7,16 @@
             ComponentElement ce = this.ComponentElement;
             ce.Create(custom);
 
-            
+            return this;
+        }
 
-            //CombineElement cb = new CombineElement();
-            //cb.ComponentId = component.Id;
-            //cb.ComponentElementId = ce.Id;
-            //custom.Add(cb);
-            //custom.SaveChanges();
+        public CombineElement Delete(CustomContext custom)
+        {
+            ComponentElement ce = this.ComponentElement;
+            ce.Delete(custom);
 
-
-
-
+            IsDelete = true;
+            custom.CombineElements.Update(this);
             return this;
         }
     }

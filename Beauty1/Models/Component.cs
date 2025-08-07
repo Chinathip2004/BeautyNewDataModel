@@ -14,6 +14,8 @@ public partial class Component
 
     public string? Name { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("IdNavigation")]
     public virtual About? About { get; set; }
 

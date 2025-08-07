@@ -16,6 +16,8 @@ public partial class EventCategorize
 
     public int? CategoryId { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [ForeignKey("CategoryId")]
     [InverseProperty("EventCategorizes")]
     public virtual Category? Category { get; set; }

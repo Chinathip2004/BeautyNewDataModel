@@ -20,6 +20,8 @@ public partial class Containing
 
     public bool? IsShow { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [ForeignKey("ComponentId")]
     [InverseProperty("Containings")]
     public virtual Component? Component { get; set; }

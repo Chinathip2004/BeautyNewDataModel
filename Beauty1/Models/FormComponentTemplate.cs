@@ -16,6 +16,8 @@ public partial class FormComponentTemplate
 
     public string? TypeName { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("IdNavigation")]
     public virtual BirthDate? BirthDate { get; set; }
 

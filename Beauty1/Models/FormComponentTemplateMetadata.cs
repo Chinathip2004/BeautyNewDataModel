@@ -1,4 +1,6 @@
-﻿namespace Beauty1.Models
+﻿using System.ComponentModel;
+
+namespace Beauty1.Models
 {
     public partial class FormComponentTemplate
     {
@@ -12,6 +14,7 @@
                     
                     SingleSelection ss = new SingleSelection();
                     ss.TypeName = this.TypeName;
+                    ss.IsDelete = false;
                     FormComponentTemplate sf = (FormComponentTemplate)ss;
                     sf.FormId = component.Id;
                     custom.Add(sf);
@@ -24,6 +27,7 @@
                     
                     TextField td = new TextField();
                     td.TypeName = this.TypeName;
+                    td.IsDelete = false;
                     FormComponentTemplate tf = (FormComponentTemplate)td;
                     tf.FormId = component.Id;
                     custom.Add(tf);
@@ -35,6 +39,7 @@
                     //this.FormId = component.Id;
                     Date d = new Date();
                     d.TypeName = this.TypeName;
+                    d.IsDelete = false;
                     FormComponentTemplate dt = (FormComponentTemplate)d;
                     dt.FormId = component.Id;
                     custom.Add(dt);
@@ -46,6 +51,7 @@
                     //this.FormId = component.Id;
                     BirthDate bd = new BirthDate();
                     bd.TypeName = this.TypeName;
+                    bd.IsDelete = false;
                     FormComponentTemplate hbd = (FormComponentTemplate)bd;
                     hbd.FormId = component.Id;
                     custom.Add(hbd);
@@ -57,6 +63,7 @@
                     //this.FormId = component.Id;
                     ImageUpload iu = new ImageUpload();
                     iu.TypeName = this.TypeName;
+                    iu.IsDelete = false;
                     FormComponentTemplate it = (FormComponentTemplate)iu;
                     it.FormId = component.Id;
                     custom.Add(it);
@@ -68,6 +75,7 @@
                     //this.FormId = component.Id;
                     ImageUploadWithImageContent ic = new ImageUploadWithImageContent();
                     ic.TypeName = this.TypeName;
+                    ic.IsDelete = false;
                     FormComponentTemplate ifc = (FormComponentTemplate)ic;
                     ifc.FormId = component.Id;
                     custom.Add(ifc);
@@ -79,6 +87,7 @@
                     //this.FormId = component.Id;
                     ButtonForm bf = new ButtonForm();
                     bf.TypeName = this.TypeName;
+                    bf.IsDelete = false;
                     FormComponentTemplate bt = (FormComponentTemplate)bf;
                     bt.FormId = component.Id;
                     custom.Add(bt);
@@ -90,6 +99,7 @@
                     
                     PopUpForm pf = new PopUpForm();
                     pf.TypeName = this.TypeName;
+                    pf.IsDelete = false;
                     FormComponentTemplate pt = (FormComponentTemplate)pf;
                     pt.FormId = component.Id;
                     custom.Add(pt);
@@ -106,6 +116,19 @@
             {
                 cbf.FormComponentId = this.Id;
                 cbf.Create(custom, this);
+            }
+
+            return this;
+        }
+
+        public FormComponentTemplate Delete(CustomContext custom)
+        {
+            IsDelete = true;
+            custom.Update(this);
+
+            foreach(var cb in this.CombineFormElementTemplates)
+            {
+                cb.Delete(custom);
             }
 
             return this;

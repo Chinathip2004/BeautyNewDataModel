@@ -19,6 +19,7 @@ namespace Beauty1.Models
             ee.IsFavorite = this.IsFavorite;
             ee.FileId = this.FileId;
             ee.IsFavorite = this.IsFavorite;
+            ee.IsDelete = false;
             custom.Add(ee);
             custom.SaveChanges();
 
@@ -48,7 +49,18 @@ namespace Beauty1.Models
 
         public Event Delete(CustomContext custom)
         {
-            
+            this.IsDelete = true;
+            custom.Events.Update(this);
+
+            foreach(var dd in this.EventCategorizes)
+            {
+                dd.Delete(custom);
+            }
+
+            foreach(var p in this.Pages)
+            {
+                p.DeletePage(custom);
+            }
 
             return this;
         }
@@ -115,6 +127,21 @@ namespace Beauty1.Models
                     {
                         TwoTopicImageCaptionButton tb = (TwoTopicImageCaptionButton)compo;
                         tb.Id = (tb as Component).Id;
+                    }
+                    if(compo.Name == "Sale")
+                    {
+                        Sale sa = (Sale)compo;
+                        sa.Id = (sa as Component).Id;
+                    }
+                    if(compo.Name == "ButtonComponent")
+                    {
+                        ButtonComponent bc = (ButtonComponent)compo;
+                        bc.Id = (bc as Component).Id;
+                    }
+                    if(compo.Name == "About")
+                    {
+                        About ab = (About)compo;
+                        ab.Id = (ab as Component).Id;
                     }
                     foreach (var cb in compo.CombineElements)
                     {
@@ -333,5 +360,12 @@ namespace Beauty1.Models
         }
 
         
+
+        public Event Update(CustomContext custom)
+        {
+
+
+            return this;
+        }
     }
 }

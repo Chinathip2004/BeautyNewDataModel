@@ -12,14 +12,11 @@
             cc.ComponentId = component1.Id;
             cc.Order = this.Order;
             cc.IsShow = this.IsShow;
+            cc.IsDelete = false;
             custom.Add(cc);
             custom.SaveChanges();
             
-            //foreach(CombineElement cb in component1.CombineElements)
-            //{
-            //    cb.ComponentId = component1.Id;
-            //    cb.Create(custom, component1);
-            //}
+            
 
             if(component1.Name == "Section")
             {
@@ -29,19 +26,17 @@
                 }
             }
 
-            //if(component1.Name == "FormTemplate")
-            //{
-                
+   
+            return this;
+        }
 
-            //    foreach(var ff in component1.FormTemplate.FormComponentTemplates)
-            //    {
-            //        ff.FormId = component1.Id;
-            //        ff.Create(custom, component1);
-            //    }
-            //}
-            
-            
-            
+        public Containing Delete(CustomContext custom)
+        {
+
+            this.IsDelete = true;
+            custom.Update(this);
+            custom.SaveChanges();
+
             return this;
         }
     }

@@ -10,23 +10,28 @@ namespace Beauty1.Models
         {
 
 
-            //if(compp != null)
-            //{
-            //    ComponentElement comp = compp.Create(custom);
-            //    FormComponentId = fce.Id;
-            //    FormElementId = comp.Id;
-
-            //    custom.Add(this);
-            //    custom.SaveChanges();
-            //}
+            
             FormElementTemplate fe = this.FormElement;
             fe.Create(custom);
 
             CombineFormElementTemplate ft = new CombineFormElementTemplate();
             ft.FormComponentId = fce.Id;
             ft.FormElementId = fe.Id;
+            ft.IsDelete = false;
             custom.Add(ft);
             custom.SaveChanges();
+
+            return this;
+        }
+
+        public CombineFormElementTemplate Delete(CustomContext custom)
+        {
+            FormElementTemplate fe = this.FormElement;
+            fe.Delete(custom);
+
+            IsDelete = true;
+            custom.Update(this);
+            
 
             return this;
         }

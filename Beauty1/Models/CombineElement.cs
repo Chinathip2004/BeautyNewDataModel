@@ -16,6 +16,8 @@ public partial class CombineElement
 
     public int? ComponentElementId { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [ForeignKey("ComponentId")]
     [InverseProperty("CombineElements")]
     public virtual Component? Component { get; set; }

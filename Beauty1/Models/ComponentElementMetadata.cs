@@ -13,6 +13,7 @@
                 bo.ButtonUrl = this.Button.ButtonUrl;
                 bo.IsActive = this.Button.IsActive;
                 bo.Name = this.Name;
+                bo.IsDelete = false;
                 ComponentElement be = (ComponentElement)bo;
                 custom.Add(be);
                 custom.SaveChanges();
@@ -23,6 +24,7 @@
                 Text t = new Text();
                 t.TextValue = this.Text.TextValue;
                 t.Name = this.Name;
+                t.IsDelete = false;
                 ComponentElement te = (ComponentElement)t;
                 custom.Add(te);
                 custom.SaveChanges();
@@ -33,6 +35,8 @@
                 Picture pig = new Picture();
                 pig.ImageId = this.Picture.ImageId;
                 pig.ImageUrl = this.Picture.ImageUrl;
+                pig.Name = this.Name;
+                pig.IsDelete = false;
                 ComponentElement p = (ComponentElement)pig;
                 custom.Add(p);
                 custom.SaveChanges();
@@ -43,6 +47,8 @@
             {
                 NumberTable nb = new NumberTable();
                 nb.NumberValue = this.NumberTable.NumberValue;
+                nb.Name = this.Name;
+                nb.IsDelete = false;
                 ComponentElement d = (ComponentElement)nb;
                 custom.Add(d);
                 custom.SaveChanges();
@@ -53,6 +59,8 @@
             {
                 DateTimeTable dt = new DateTimeTable();
                 dt.DateTimeValue = this.DateTimeTable.DateTimeValue;
+                dt.Name = this.Name;
+                dt.IsDelete = false;
                 ComponentElement dc = (ComponentElement)dt;
                 custom.Add(dc);
                 custom.SaveChanges();
@@ -61,6 +69,15 @@
 
 
             
+
+            return this;
+        }
+
+        public ComponentElement Delete(CustomContext custom)
+        {
+
+            IsDelete = true;
+            custom.Update(this);
 
             return this;
         }

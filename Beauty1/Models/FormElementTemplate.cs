@@ -14,6 +14,8 @@ public partial class FormElementTemplate
 
     public string? Type { get; set; }
 
+    public bool? IsDelete { get; set; }
+
     [InverseProperty("IdNavigation")]
     public virtual ButtonTemplate? ButtonTemplate { get; set; }
 
