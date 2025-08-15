@@ -26,13 +26,51 @@ namespace Beauty1.Models
 
         public CombineFormElementTemplate Delete(CustomContext custom)
         {
-            FormElementTemplate fe = this.FormElement;
+            
+            IsDelete = true;
+
+            FormElementTemplate fe = custom.FormElementTemplates.Where(f => f.Id == this.FormElementId).FirstOrDefault();
+
             fe.Delete(custom);
 
-            IsDelete = true;
-            custom.Update(this);
+            custom.CombineFormElementTemplates.Update(this);
             
 
+            return this;
+        }
+
+
+        public CombineFormElementTemplate Update(CustomContext custom)
+        {
+            if (FormElement.Id == 0)
+            {
+                FormElement.Create(custom);
+            }
+
+            if (FormElement.IsDelete == true)
+            {
+                FormElement.Delete(custom);
+            }
+
+            
+
+            FormElement.Update(custom);
+            FormElement = null;
+
+            IsDelete = false;
+            custom.Update(this);
+            return this;
+        }
+
+        public CombineFormElementTemplate Duplicate(CustomContext custom)
+        {
+            this.FormElement.Duplicate(custom);
+
+            CombineFormElementTemplate cm = new CombineFormElementTemplate();
+            cm.FormComponentId = this.FormComponentId;
+            cm.FormElementId = this.FormElementId;
+            custom.Add(cm);
+            custom.SaveChanges();
             return this;
         }
     }

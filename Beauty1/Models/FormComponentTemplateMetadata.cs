@@ -133,5 +133,53 @@ namespace Beauty1.Models
 
             return this;
         }
+
+
+        public FormComponentTemplate Update(CustomContext custom)
+        {
+            
+            foreach(var cft in this.CombineFormElementTemplates)
+            {
+                if(cft.Id == 0)
+                {
+                    cft.Create(custom, this);
+                }
+
+                if(cft.IsDelete == true)
+                {
+                    cft.Delete(custom);
+                }
+
+                cft.Update(custom);
+            }
+
+            return this;
+        }
+
+        public FormComponentTemplate Duplicate(CustomContext custom, Component component)
+        {
+            switch(this.TypeName)
+            {
+                case "SingleSelection":
+                    SingleSelection ss = new SingleSelection();
+                    ss.TypeName = this.TypeName;
+                    ss.IsDelete = false;
+                    FormComponentTemplate sf = (FormComponentTemplate)ss;
+                    sf.FormId = component.Id;
+                    custom.Add(sf);
+                    custom.SaveChanges();
+                    this.Id = sf.Id;
+                    break;
+            }
+
+            foreach(var cf in this.CombineFormElementTemplates)
+            {
+                cf.FormComponentId = this.Id;
+                cf.Duplicate(custom);
+            }
+
+
+            return this;
+        }
     }
 }

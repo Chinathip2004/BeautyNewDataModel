@@ -27,7 +27,7 @@ namespace Beauty1.Controllers
             return Ok();
         }
 
-        [HttpPost]
+        [HttpPost("CopyForm")]
         public ActionResult CreateCopy(int? id)
         {
             Form f = new Form();
@@ -70,12 +70,35 @@ namespace Beauty1.Controllers
         }
 
         [HttpPut]
-        public ActionResult Update()
+        public ActionResult Update([FromBody]string halo)
         {
-            
-
+            Event ev = JsonConvert.DeserializeObject<Event>(halo);
+            ev.Update(_context,ev);
+            _context.SaveChanges();
 
             return Ok();
+        }
+
+        [HttpPost("Duplicate")]
+        public ActionResult Duplicate(int? id)
+        {
+            Event ee = new Event();
+            ee.Copy(_context, id);
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
+        [HttpGet("Search")]
+        public ActionResult Search(string name)
+        {
+            List<Event> events = Event.search(_context, name);
+            if(events.Count == 0)
+            {
+                return NotFound("NotFound This Event");
+            }
+            return Ok(events);
+            
         }
     }
 }

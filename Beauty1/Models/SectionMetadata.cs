@@ -15,11 +15,7 @@
 
                 con.Delete(custom);
 
-                //if(component.Name == "Section" && component.IsDelete != true)
-                //{
-                //    Section section = (Section)component;
-                //    section.Delete(custom);
-                //}
+                
 
                 if(component.Name == "Section")
                 {
@@ -28,6 +24,29 @@
                 }
             }
 
+        }
+
+        public void UpdateSection(CustomContext custom)
+        {
+
+            if(this.Containings == null)
+            {
+                return;
+            }
+
+            foreach(var con in this.Containings)
+            {
+                Component component = con.Component.Update(custom);
+
+                if(component.Name == "Section")
+                {
+                    Section section = (Section)component;
+                    section.UpdateSection(custom);
+
+                    con.Update(custom);
+                }
+            }
+            
         }
     }
 }

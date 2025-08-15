@@ -23,5 +23,26 @@
 
             return this;
         }
+
+        public EventCategorize Update(CustomContext custom)
+        {
+            IsDelete = false;
+            custom.EventCategorizes.Update(this);
+            custom.SaveChanges();
+
+            return this;
+        }
+
+        public EventCategorize Duplicate(CustomContext custom)
+        {
+            EventCategorize ecat = new EventCategorize();
+            ecat.EventId = this.EventId;
+            ecat.CategoryId = this.CategoryId;
+            ecat.IsDelete = false;
+            custom.Add(ecat);
+            custom.SaveChanges();
+
+            return this;
+        }
     }
 }

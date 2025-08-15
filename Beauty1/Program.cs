@@ -1,7 +1,7 @@
 using Beauty1.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var config = builder.Configuration;
 // Add services to the container.
 builder.Services.AddControllers()
     .AddJsonOptions(x =>
@@ -33,7 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 app.UseCors("AllowAngularClient");
 app.UseHttpsRedirection();
-
+app.UseAuthentication(); 
 app.UseAuthorization();
 
 app.MapControllers();

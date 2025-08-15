@@ -123,5 +123,79 @@
             custom.FormElementTemplates.Update(this);
             return this;
         }
+
+        public FormElementTemplate Update(CustomContext custom)
+        {
+            if(this.Type == "FormLabelTemplate")
+            {
+                (this.FormLabelTemplate as FormElementTemplate).Id = this.Id;
+                custom.FormLabelTemplates.Update(this.FormLabelTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "FormOptionTemplate")
+            {
+                (this.FormOptionTemplate as FormElementTemplate).Id = this.Id;
+                custom.FormOptionTemplates.Update(this.FormOptionTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "FormInputTextTemplate")
+            {
+                (this.FormInputTextTemplate as FormElementTemplate).Id = this.Id;
+                custom.FormInputTextTemplates.Update(this.FormInputTextTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "FormInputFileTemplate")
+            {
+                (this.FormInputFileTemplate as FormElementTemplate).Id = this.Id;
+                custom.FormInputFileTemplates.Update(this.FormInputFileTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "FormInputDateTemplate")
+            {
+                (this.FormInputDateTemplate as FormElementTemplate).Id = this.Id;
+                custom.FormInputDateTemplates.Update(this.FormInputDateTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "PopUpTemplate")
+            {
+                (this.PopUpTemplate as FormElementTemplate).Id = this.Id;
+                custom.PopUpTemplates.Update(this.PopUpTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "PictureTemplate")
+            {
+                (this.PictureTemplate as FormElementTemplate).Id = this.Id;
+                custom.PictureTemplates.Update(this.PictureTemplate);
+                custom.SaveChanges();
+            }
+            if(this.Type == "ButtonTemplate")
+            {
+                (this.ButtonTemplate as FormElementTemplate).Id = this.Id;
+                custom.ButtonTemplates.Update(this.ButtonTemplate);
+                custom.SaveChanges();
+            }
+
+            return this;
+        }
+
+        public FormElementTemplate Duplicate(CustomContext custom)
+        {
+            switch(this.Type)
+            {
+
+                case "FormLabelTemplate":
+                    FormLabelTemplate fl = new FormLabelTemplate();
+                    fl.Type = this.Type;
+                    fl.IsDelete = false;
+                    fl.LabelText = (this as FormLabelTemplate).LabelText;
+                    FormElementTemplate fl2 = (FormElementTemplate)fl;
+                    custom.Add(fl2);
+                    custom.SaveChanges();
+                    this.Id = fl2.Id;
+                    break;
+            }
+
+            return this;
+        }
     }
 }
