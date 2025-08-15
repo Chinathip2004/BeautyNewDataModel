@@ -107,6 +107,8 @@ public partial class BeautysDbContext : DbContext
 
     public virtual DbSet<Section> Sections { get; set; }
 
+    public virtual DbSet<SignIn> SignIns { get; set; }
+
     public virtual DbSet<SingleSelection> SingleSelections { get; set; }
 
     public virtual DbSet<TableWithTopicAndDesc> TableWithTopicAndDescs { get; set; }

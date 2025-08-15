@@ -10,6 +10,8 @@ namespace Beauty1.Controllers
     [ApiController]
     public class ComponentController : ControllerBase
     {
+        
+
         private readonly CustomContext _context;
 
         public ComponentController(CustomContext context)
@@ -100,5 +102,7 @@ namespace Beauty1.Controllers
             return Ok(events);
             
         }
+
+
     }
 }
